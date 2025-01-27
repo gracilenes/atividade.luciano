@@ -1,10 +1,11 @@
-const http = require('http');
-const fs = require('fs');
-const path = require('path');
-const { url } = require('inspector');
+const express = require('express'); 
+const path = require('path'); 
+const app = express(); 
 
-const server = http.createServer((req, res) => {
-    const parsedUrl = url.parse(req.url,true);
-    const pathname = parsedUrl.pathname;
-})
+app.use(express.static(path.join(__dirname, 'public')));
 
+// Rota para a página inicial 
+
+app.get('/', (req, res) => { 
+    res.sendFile(path.join(__dirname, 'public', 'index.html')); 
+});
